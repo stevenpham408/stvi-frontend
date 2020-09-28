@@ -1,2 +1,2 @@
 declare module 'styled-components';
-declare module 'react-typing-effect';
+declare module 'react-typist';
