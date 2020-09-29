@@ -22,6 +22,11 @@ const NavBarStyles = styled.div`
     .NavBar .rightMost {
         margin-right: 60px;
     }
+
+    .NavBar a:hover {
+        background-color: #ddd;
+        color: black;
+    }
        
     #Logo {
         float: left;
@@ -42,9 +47,9 @@ const NavBar : React.FC = () => {
             <NavBarStyles>
                   <div className='NavBar'>
                       <div className='rightMost'>
-                        <a href="#about"> About </a>
-                        <a href="#login"> Login </a>
-                      </div>
+                          <a href="#login"> Login </a>
+                          <a href="#about"> About </a>
+                       </div>
                       <a id="Logo" href="#landing"> <img src={Logo}/> </a>
                   </div>
         </NavBarStyles>
