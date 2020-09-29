@@ -1,3 +1,4 @@
+import { linkSync } from 'fs'
 import React from 'react'
 import styled from 'styled-components'
 import Logo from '../../Images/Logo.png'
@@ -20,12 +21,12 @@ const NavBarStyles = styled.div`
     }
 
     .NavBar .rightMost {
-        margin-right: 60px;
+        margin-right: 62px;
     }
 
-    .NavBar a:hover {
-        background-color: #ddd;
-        color: black;
+    .NavBar .rightMost a:hover {
+        background-color: #6F24CB;
+        color: white;
     }
        
     #Logo {
