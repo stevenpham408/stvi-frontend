@@ -6,7 +6,29 @@ import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
 
+const initialFormData = Object.freeze({
+    email : "",
+    username : "",
+    password : "",
+    matchingPassword : ""
+})
 const RegistrationPage: React.FC = () => {
+    const [formData, setFormData] = React.useState(initialFormData);
+    const handleChange = (e : any) => {
+        setFormData({
+            ...formData,
+            [e.target.name] : e.target.value
+        })
+    };
+
+    const handleSubmit = (e : any) => {
+        e.preventDefault();
+        console.log(formData);
+        if (formData['password'] != formData['matchingPassword']){
+            alert("passwords don't match");
+            return;
+        }
+    }
     return(
     <>
     <NavBar/>
@@ -22,25 +44,25 @@ const RegistrationPage: React.FC = () => {
         <Form>
             <div className='form-group'>
                 <label> Email </label>
-                <input type="email" name='email' className="form-control" id="registrationInputEmail" placeholder="Enter email"/>
+                <input type="email" name="email" className="form-control" id="registrationInputEmail" placeholder="Enter email" onChange={handleChange}/>
             </div>
 
             <div className='form-group'>
                 <label> Username </label>
-                <input type="text" className="form-control" id="registrationInputUsername" placeholder="Username"/>
+                <input type="text" name="username" className="form-control" id="registrationInputUsername" placeholder="Username" onChange={handleChange}/>
             </div>
 
             <div className='form-group'>
                 <label> Password </label>
-                <input type="password" className="form-control" id="registrationInputPw" placeholder="Password"/>
+                <input type="password" name="password" className="form-control" id="registrationInputPw" placeholder="Password" onChange={handleChange}/>
             </div>
 
             <div className='form-group'>
                 <label> Confirm Password </label>
-                <input type="password" className="form-control" id="registrationConfirmPw" placeholder="Confirm password"/>
+                <input type="password" name="matchingPassword" className="form-control" id="registrationConfirmPw" placeholder="Confirm password" onChange={handleChange}/>
             </div>
             
-            <Button type="submit" className="btn-lg btn-flat">Submit</Button>
+            <Button type="submit" className="btn-lg btn-flat" onClick={handleSubmit}>Submit</Button>
         </Form> 
     </div>
     </>
