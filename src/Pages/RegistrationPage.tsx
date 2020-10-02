@@ -10,10 +10,10 @@ const initialFormData = Object.freeze({
     email : "",
     username : "",
     password : "",
-    matchingPassword : ""
 })
 const RegistrationPage: React.FC = () => {
     const [formData, setFormData] = React.useState(initialFormData);
+    const [matchingPw, setMatchingPw] = React.useState('');
     const handleChange = (e : any) => {
         setFormData({
             ...formData,
@@ -24,10 +24,24 @@ const RegistrationPage: React.FC = () => {
     const handleSubmit = (e : any) => {
         e.preventDefault();
         console.log(formData);
-        if (formData['password'] != formData['matchingPassword']){
+        let isEmpty = Object.values(formData).some(element => element === "");
+        if(isEmpty || matchingPw === ""){
+            alert("Fill in the missing fields.");
+            return;
+        }
+
+        if (formData['password'] != matchingPw){
             alert("passwords don't match");
             return;
         }
+
+        axios.post("http://localhost:4040/registration", formData)
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            })
     }
     return(
     <>
@@ -59,12 +73,12 @@ const RegistrationPage: React.FC = () => {
 
             <div className='form-group'>
                 <label> Confirm Password </label>
-                <input type="password" name="matchingPassword" className="form-control" id="registrationConfirmPw" placeholder="Confirm password" onChange={handleChange}/>
+                <input type="password" name="matchingPassword" className="form-control" id="registrationConfirmPw" placeholder="Confirm password" onChange={(e) => {setMatchingPw(e.target.value)}}/>
             </div>
             
             <Button type="submit" className="btn-lg btn-flat" onClick={handleSubmit}>Submit</Button>
         </Form> 
-    </div>
+    </div> 
     </>
     );
 };
