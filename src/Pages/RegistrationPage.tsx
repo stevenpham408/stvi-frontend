@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import NavBar from './Components/NavBarComponent'
+import isEmail from 'validator/lib/isEmail'
 import axios from 'axios'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
@@ -30,7 +31,12 @@ const RegistrationPage: React.FC = () => {
             return;
         }
 
-        if (formData['password'] != matchingPw){
+        if(!isEmail(formData["email"])){
+            alert("You entered a non-valid email.");
+            return;
+        }
+
+        if (formData['password'] !== matchingPw){
             alert("passwords don't match");
             return;
         }
@@ -43,6 +49,7 @@ const RegistrationPage: React.FC = () => {
                 alert("You have successfully created an account!")
             })
             .catch(error => {
+                alert("Something went wrong. Please try again later.");
                 console.log(error);
             })
     }
@@ -103,7 +110,7 @@ const RegistrationPage: React.FC = () => {
                 onChange={(e) => {setMatchingPw(e.target.value)}}/>
             </div>
             
-            <Button type="submit" className="btn-lg btn-flat" onClick={handleSubmit}>Submit</Button>
+            <Button type="submit" className="btn btn-flat" id="register-button" onClick={handleSubmit}>Submit</Button>
         </Form> 
     </div> 
     </>

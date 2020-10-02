@@ -51,9 +51,17 @@
     color: white;
 }
 
+#register-button {
+    width: 90%;
+}
+
 .btn-flat:hover{
     background-color: white;
     color: black;
+}
+
+.btn-flat:focus{
+    background-color: rgb(150, 45, 192);
 }
 
 .btn-xxl {
