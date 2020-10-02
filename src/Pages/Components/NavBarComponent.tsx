@@ -3,12 +3,13 @@ import React from 'react'
 import styled from 'styled-components'
 import Logo from '../../Images/Logo.png'
 
+
 const NavBarStyles = styled.div`
     .NavBar{
         overflow: hidden;   
         background-color: black;
         width: 100%;
-        height: 55px;
+        height: 3.4375rem;
     }
 
     .NavBar a{
