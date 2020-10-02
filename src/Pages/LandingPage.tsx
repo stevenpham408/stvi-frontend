@@ -1,55 +1,20 @@
 import React from 'react'
-import styled from 'styled-components'
 import Typist from 'react-typist'
 import NavBar from './Components/NavBarComponent'
 import '../../node_modules/react-typist/dist/Typist.css'
 import Chain_Img from '../Images/BrokenChain.svg'
+import Button from 'react-bootstrap/Button';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import API_Img from '../Images/API Development.svg'
+import Monitor_Img from '../Images/Monitor with Lock.svg'
+import UI_Img from '../Images/UI Design.svg'
 
-const TypistStyles = styled.div`
-  color: #bb86fc;
-  text-align: center;
-  font-size: 45px;
-  font-family: "Nunito Sans", sans-serif;
-  letter-spacing: 3px;
-  .TypingAnimationBlock {
-      float: right;
-      margin-top: 80px;
-      margin-right: 50px;
-      width: 200px;
-    //   outline: dotted;
-  }
-`;
+import './styles.css'
 
-const GetStartedStyles = styled.div`
-  color: white;
-  font-family: "Nunito Sans", sans-serif;
-  margin-left: 62px;
-  margin-top: 30px;
-
-  #chain {
-      width: 650px;
-      height: auto;
-  }
-  #hook {
-      font-size: 30px;
-      letter-spacing: 3px;
-  }
-
-  #introduction {
-      display: inline-block;
-      width: 61%;
-      word-wrap: break-word;
-      padding-top: 20px;
-      color: #BBBBBB;
-      letter-spacing: 1.5px;
-  }
-
-`
 
 const MyTypist: React.FC = () => {
     return(
-        <TypistStyles>
-            <Typist className="TypingAnimationBlock">
+            <Typist className='typist'>
                shorter.
                <Typist.Delay ms={500} />
                <br/>
@@ -61,36 +26,61 @@ const MyTypist: React.FC = () => {
                <br/>
                stvi.
             </Typist>
-        </TypistStyles>
     );
 };
 
 const GetStarted: React.FC = () => {
     return(
-        <GetStartedStyles>
+        <div className='getStarted'>
             <img id="chain"src={Chain_Img}></img>
             <div>
-                <span id='hook'> <strong>Shorten your long, unsightly URLs with a cluck of a button. </strong> </span>
-                <br/>
-                <span id='introduction'> 
-                    In the current age ruled by social media, short and readable links have become one of the many pillars 
-                    that support a brand due to their implicit usage in advertisement. A website's URL, as simple as it may 
-                    seem, is one of the few faces behind a brand that users constantly see and interact with. 
-                    URL Shorteners are services that thrive in today's day and age. 
-                </span>
+                <h1 id='hook'> 
+                    <strong> Shorten your long, unsightly URLs with a click of a button. </strong> 
+                </h1>
+                <p id='introduction'> 
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam pulvinar sodales massa id aliquam. Morbi lectus elit, 
+                eleifend quis orci sed, finibus aliquam felis. Donec sagittis aliquam lectus, nec mattis urna sagittis vitae. Morbi 
+                pellentesque bibendum vehicula. Vivamus augue ligula, faucibus feugiat enim quis, cursus sollicitudin ex. Vestibulum 
+                ante ipsum.
+                </p>
+                <Button id="Register" variant="flat" size="lg"> Register </Button>
             </div>
-        </GetStartedStyles>
- 
+        </div>
+
     );
 };
+
+const InfoImages: React.FC = () => {
+    return(             
+            <div className="images">
+                <div className="imgContainer">
+                    <img src={API_Img} width="80px" height="80px"/>
+                    <div className="caption">Communicates with a RESTful API backend written in Java with Spring Boot</div>
+                </div>
+
+                <div className="imgContainer">
+                    <img src={Monitor_Img} width="80px" height="80px"/> 
+                    <div className="caption">Handles user information securely with modern password encryption 
+                                             practices with Spring Security and MySQL</div>
+                </div>
+                
+                <div className="imgContainer">
+                    <img src={UI_Img} width="80px" height="80px"/> 
+                    <div className="caption">Manages user session state using cookies stored in-memory through Spring Security</div>
+                 </div> 
+            </div>
+    );
+}
 const LandingPage: React.FC = () => {
 
     return(
         <div>
             <NavBar/>
-            <MyTypist/>
-            <GetStarted/>
-             
+            <div className='container'>
+                <GetStarted/>
+                <MyTypist/>
+            </div>
+            <InfoImages/>
         </div>
     );
 }
