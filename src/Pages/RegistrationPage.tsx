@@ -38,6 +38,9 @@ const RegistrationPage: React.FC = () => {
         axios.post("http://localhost:4040/registration", formData)
             .then(response => {
                 console.log(response);
+                setFormData(initialFormData);
+                setMatchingPw("");
+                alert("You have successfully created an account!")
             })
             .catch(error => {
                 console.log(error);
@@ -58,22 +61,46 @@ const RegistrationPage: React.FC = () => {
         <Form>
             <div className='form-group'>
                 <label> Email </label>
-                <input type="email" name="email" className="form-control" id="registrationInputEmail" placeholder="Enter email" onChange={handleChange}/>
+                <input type="email" 
+                name="email" 
+                value={formData["email"]}
+                className="form-control" 
+                id="registrationInputEmail" 
+                placeholder="Enter email" 
+                onChange={handleChange}/>
             </div>
 
             <div className='form-group'>
                 <label> Username </label>
-                <input type="text" name="username" className="form-control" id="registrationInputUsername" placeholder="Username" onChange={handleChange}/>
+                <input type="text" 
+                name="username" 
+                value={formData["username"]}
+                className="form-control" 
+                id="registrationInputUsername" 
+                placeholder="Username" 
+                onChange={handleChange}/>
             </div>
 
             <div className='form-group'>
                 <label> Password </label>
-                <input type="password" name="password" className="form-control" id="registrationInputPw" placeholder="Password" onChange={handleChange}/>
+                <input type="password" 
+                name="password" 
+                value={formData["password"]}
+                className="form-control" 
+                id="registrationInputPw" 
+                placeholder="Password" 
+                onChange={handleChange}/>
             </div>
 
             <div className='form-group'>
                 <label> Confirm Password </label>
-                <input type="password" name="matchingPassword" className="form-control" id="registrationConfirmPw" placeholder="Confirm password" onChange={(e) => {setMatchingPw(e.target.value)}}/>
+                <input type="password" 
+                name="matchingPassword" 
+                value={matchingPw}
+                className="form-control" 
+                id="registrationConfirmPw" 
+                placeholder="Confirm password" 
+                onChange={(e) => {setMatchingPw(e.target.value)}}/>
             </div>
             
             <Button type="submit" className="btn-lg btn-flat" onClick={handleSubmit}>Submit</Button>
