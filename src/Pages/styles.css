@@ -5,7 +5,6 @@
 .container{
     display: flex;
     max-width: 1400px;
-    /* outline: solid; */
 }
 
 .typist{
@@ -45,13 +44,14 @@
     letter-spacing: 2px;
 }
 
+
 .btn-flat {
     border: none;
     background-color: #572069;
     color: white;
 }
 
-#register-button {
+#register-button, #login-button {
     width: 90%;
 }
 
@@ -64,11 +64,15 @@
     background-color: rgb(150, 45, 192);
 }
 
+#register-button:active, #login-button:active{
+    background-color: #39044B;
+}
+
 .btn-xxl {
     padding: 1rem 1.5rem;
     font-size: 1.5rem;
-  }
-
+}
+    
 
 .images {
     display:block;
@@ -98,7 +102,6 @@
 }
 
 .registration-text{
-    display: block;
     text-align: left;
     color: white;
     width: 400px;
@@ -114,7 +117,7 @@
     font-size: 27px;
 }
 
-.form-container{
+.registration-form-container{
     display: block;
     text-align: center;
     width: 390px;
@@ -123,10 +126,34 @@
     margin-left: auto;
     margin-right: auto;
     background-color: #2E2E32;
+} 
+
+.main-login-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top:10%;
+    margin-left: 10%;
+}
+.decorative-text{
+    width: fit-content; 
+    padding-top: 5%;
+    color: white;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+.standard-text{
+    font-size: 5em;
+}
+
+
+.colored-text{
+    color: #BB86FC;
 }
 
 .form-group {
-    width: 350px;
+    width: 90%;
     text-align: left;
     margin-left: auto;
     margin-right: auto;
@@ -137,9 +164,9 @@
 }
 
 .form-group label{
-    letter-spacing: 1.1px;
+    letter-spacing: 1.5px;
     color: #D6CECE;
-    height: 10px;
+    height: 20px;
 }
 
 .form-control{
@@ -149,4 +176,45 @@
     border-width: 1px;    
 }
 
-.form-control:focus{border-color: white; color:white; background-color:#2E2E32; box-shadow: none; -webkit-box-shadow: none;}
+.form-control:focus{border-color: white; color:white; background-color:#2E2E32; box-shadow: none; -webkit-box-shadow: none;} 
+
+
+.login-form-container{
+    text-align: center;
+    width: 30vw;
+    max-width: 35%;
+    height: 100%;
+    background-color: #2E2E32;
+    padding-bottom: 1.5rem;
+}
+
+.login-text{
+    text-align: center;
+    background-color: #201E22;
+    color: white;
+    padding-bottom: 5%;
+}
+
+.login-text h2{
+    font-size:calc(1.45rem + 0.2vh);
+}
+
+
+@media (max-width: 800px){
+    .main-login-container{
+        flex-direction: column;
+        justify-content: center;
+    } 
+
+
+    .login-form-container{
+        width: 80vw;
+        max-width: inherit;
+        margin: 2rem 0;
+        margin-right: 10%;
+    }
+
+    .decorative-text{
+        text-align: center;
+    }
+} 
