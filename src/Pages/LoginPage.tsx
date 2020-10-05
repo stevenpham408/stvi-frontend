@@ -81,7 +81,6 @@ const LoginPage: React.FC = () => {
                             onChange={handleChange}
                             />
                         </div>
-
                         <Button type="submit" className="btn-lg btn-flat" id="login-button" onClick={handleLogin}>Log in</Button>
                     </Form> 
                 </div> 
