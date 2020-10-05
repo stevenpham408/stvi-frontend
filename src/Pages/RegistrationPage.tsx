@@ -64,7 +64,7 @@ const RegistrationPage: React.FC = () => {
             It's quick and easy with stvi    
         </h2>
     </div>
-    <div className='form-container'>
+    <div className='registration-form-container'>
         <Form>
             <div className='form-group'>
                 <label> Email </label>
