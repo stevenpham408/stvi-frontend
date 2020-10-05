@@ -5,13 +5,11 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css'
-// import './styles.css'
+import './styles.css'
+
 const UserMainPage : React.FC = () => {
+    const [urlData, setUrlData] = React.useState('');
 
-    const handleSubmit = () => {
-
-
-    }
     return(
         <body>
             <div className='shortener-container'>
@@ -20,9 +18,10 @@ const UserMainPage : React.FC = () => {
                     <div className='urlshorten-form-group'>
                         <input required
                            type="text" 
-                           name="url" 
+                           value={urlData}
                            className="urlform-control" 
                            placeholder="Input URL here" 
+                           onChange={(e) => {setUrlData(e.target.value)}}
                         />
                         <Button type="submit" className="btn-flat" >Shorten</Button>
                     </div>
