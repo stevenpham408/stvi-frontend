@@ -4,3 +4,4 @@ declare module "*.png"
 declare module "*.svg"
 declare module 'validator/lib/isEmail'
 declare module 'validator/lib/isUrl'
+declare module 'react-router-dom'
