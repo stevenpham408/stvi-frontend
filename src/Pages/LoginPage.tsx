@@ -3,6 +3,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import NavBar from './Components/NavBarComponent'
 import axios from 'axios'
+import qs from 'query-string'
+import { useHistory  } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
 
@@ -12,10 +14,20 @@ const initialLoginData = Object.freeze({
     password : ""
 });
 
+const config = Object.freeze({
+    withCredentials: true,  
+    headers: {
+      crossDomain: true, 
+      'Access-Control-Allow-Origin' : 'http://localhost:4040',
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+});
+  
 /**
  * Functional component that represents the entire Login page
  */
 const LoginPage: React.FC = () => {
+    const history = useHistory();
     const [loginData, setLoginData] = React.useState(initialLoginData);
     const handleChange = (e : any) => {
         setLoginData({
@@ -28,6 +40,8 @@ const LoginPage: React.FC = () => {
      * Function expression for handling form data after user submits the form
      */
     const handleLogin = (e : any) => {
+        e.preventDefault();
+        
         // Check for empty fields before making a request to the API
         let isEmpty = Object.values(loginData).some(element => element === "");
         if(isEmpty){
@@ -35,17 +49,23 @@ const LoginPage: React.FC = () => {
             return;
         }
 
+        axios.defaults.withCredentials = true;
         // Make a post request to the API using axios
-        axios.post("http://localhost:4040/login", loginData)
+        axios.post("http://localhost:4040/loginprocess", qs.stringify(loginData), config)
             .then(response => {
                 // NOTE: Need to redirect the frontend to the user main page
                 console.log(response);
                 console.log("Login successful.");
+
+                // If the response is OK, then we can redirect the newly authenticated user to the user page
+                if(response.status === 200){
+                    history.push('/userpage');
+                }
             })
             // NOTE: Need to render a bootstrap alert that login failed
             .catch(error => {
                 console.log(error);
-                console.log("Something happened while logging in.")
+                console.log("Login failed. Please try again.")
             })
     }
     return (
