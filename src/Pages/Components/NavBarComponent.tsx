@@ -49,7 +49,7 @@ const NavBar : React.FC = () => {
             <NavBarStyles>
                   <div className='NavBar'>
                       <div className='rightMost'>
-                          <a href="#login"> Login </a>
+                          <a href="login"> Login </a>
                           <a href="#about"> About </a>
                        </div>
                       <a id="Logo" href="#landing"> <img src={Logo}/> </a>

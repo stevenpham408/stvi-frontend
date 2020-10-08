@@ -44,6 +44,14 @@
     letter-spacing: 2px;
 }
 
+.registerHref {
+    color:  #E9E9E9;
+}
+
+.registerHref:hover{
+    color: black;
+    text-decoration: none;
+}
 
 .btn-flat {
     border: none;
@@ -218,3 +226,13 @@
         text-align: center;
     }
 } 
+
+.shortener-container{
+    color: white;
+}
+
+
+
+.table{
+    color: white;
+}

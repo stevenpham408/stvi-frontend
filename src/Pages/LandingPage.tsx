@@ -43,7 +43,7 @@ const GetStarted: React.FC = () => {
                 pellentesque bibendum vehicula. Vivamus augue ligula, faucibus feugiat enim quis, cursus sollicitudin ex. Vestibulum 
                 ante ipsum.
                 </p>
-                <Button id="Register" variant="flat" size="lg"> Register </Button>
+                <Button id="Register" variant="flat" size="lg"> <a className="registerHref" href="register"> Register </a> </Button>
             </div>
         </div>
 
