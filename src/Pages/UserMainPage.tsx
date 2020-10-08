@@ -5,11 +5,18 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import 'bootstrap/dist/css/bootstrap.min.css'
-import './styles.css'
+import './styles.css'   
+
+interface urlJson {
+    hash: string,
+    longUrl: string,
+    userId: number
+};
 
 function replacer(key:any,value:any)
 {
-    if (key==="pageable" || key==="sort" || key==="last" || key==="totalPages" || key==="totalElements" || key==="number" || key==="size" || key==="numberOfElements" || key==="first" || key==="empty"){
+    if (key==="pageable" || key==="sort" || key==="last" || key==="totalPages" || key==="totalElements" 
+    || key==="number" || key==="size" || key==="numberOfElements" || key==="first" || key==="empty"){
         return undefined;
     }
     return value;
@@ -28,8 +35,18 @@ const config = Object.freeze({
     },
 });
 
-const UserMainPage : React.FC<urlHistoryState> = () => {
+const UserMainPage : React.FC = () => {
     const [urlData, setUrlData] = React.useState(initialUrlData);
+    const [arrayUrl, setArrayUrl] = React.useState<urlJson[] | null>([])
+
+    React.useEffect( () => {
+        const fetchData = async () => {
+            let content = await urlJsonPromise();
+            let parsed = JSON.parse(JSON.stringify(content, replacer))["content"]
+            setArrayUrl(parsed)
+        }
+        fetchData();
+    }, [setArrayUrl]);
 
     const handleChange = (e:any) => {
         setUrlData({
@@ -41,7 +58,6 @@ const UserMainPage : React.FC<urlHistoryState> = () => {
     const urlJsonPromise = async () => {
         const promise = axios.get("http://localhost:4040/user/url");
         const dataPromise = promise.then((response) => response.data);
-
         return dataPromise;
     };
  
@@ -50,7 +66,8 @@ const UserMainPage : React.FC<urlHistoryState> = () => {
         axios.post("http://localhost:4040/url", urlData, config)
         .then(async response => {
             let content = await urlJsonPromise();
-            let parsed = JSON.parse(JSON.stringify(content, replacer))
+            let parsed = JSON.parse(JSON.stringify(content, replacer))["content"]
+            setArrayUrl(parsed)
         })  
         .catch(error => {
             console.log("There was a problem processing your request." + urlData);
@@ -72,6 +89,19 @@ const UserMainPage : React.FC<urlHistoryState> = () => {
                     </div> 
                 </Form>
                 
+                <div className="url-container">
+                    {arrayUrl!.map((data, key) => {
+                    return (
+                        <div key={key}>
+                            {
+                                data.hash + "," +
+                                data.longUrl + "," +
+                                data.userId
+                            }
+                        </div>
+                    );
+                    })}
+                </div>
 
                 {/* <Table className="table table-striped">
                     <thead className='yesthead'>
