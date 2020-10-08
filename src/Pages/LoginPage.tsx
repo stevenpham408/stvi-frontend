@@ -1,10 +1,12 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
 import NavBar from './Components/NavBarComponent'
 import axios from 'axios'
 import qs from 'query-string'
 import { useHistory  } from "react-router-dom";
+import { displayAlert } from "../helpers"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
 
@@ -22,13 +24,17 @@ const config = Object.freeze({
       'Content-Type': 'application/x-www-form-urlencoded'
     },
 });
-  
+
 /**
  * Functional component that represents the entire Login page
  */
 const LoginPage: React.FC = () => {
     const history = useHistory();
     const [loginData, setLoginData] = React.useState(initialLoginData);
+    const [loginFailedAlert, showLoginFailedAlert] = React.useState(false);
+    const [missingFieldsAlert, showMissingFieldsAlert] = React.useState(false);
+
+
     const handleChange = (e : any) => {
         setLoginData({
             ...loginData,
@@ -45,7 +51,7 @@ const LoginPage: React.FC = () => {
         // Check for empty fields before making a request to the API
         let isEmpty = Object.values(loginData).some(element => element === "");
         if(isEmpty){
-            alert("Fill in the missing fields.");
+            displayAlert(showMissingFieldsAlert,3000);
             return;
         }
 
@@ -53,24 +59,23 @@ const LoginPage: React.FC = () => {
         // Make a post request to the API using axios
         axios.post("http://localhost:4040/loginprocess", qs.stringify(loginData), config)
             .then(response => {
-                // NOTE: Need to redirect the frontend to the user main page
-                console.log(response);
-                console.log("Login successful.");
-
                 // If the response is OK, then we can redirect the newly authenticated user to the user page
                 if(response.status === 200){
                     history.push('/userpage');
                 }
             })
-            // NOTE: Need to render a bootstrap alert that login failed
             .catch(error => {
+                displayAlert(showLoginFailedAlert, 3500);
                 console.log(error);
-                console.log("Login failed. Please try again.")
             })
     }
     return (
         <>
             <NavBar/>
+            <Alert className="failure-alert" variant="danger" show={loginFailedAlert}> Login failed. Please double-check your username and password and try again. </Alert>
+            <Alert className="failure-alert" variant="danger" show={missingFieldsAlert}> Fill in the missing fields. </Alert>
+
+
             <div className="main-login-container">
                 <div className = "decorative-text">
                     <h1 className='standard-text'> Let's get to

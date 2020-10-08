@@ -1,9 +1,11 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import Alert from 'react-bootstrap/Alert'
 import NavBar from './Components/NavBarComponent'
 import isEmail from 'validator/lib/isEmail'
 import axios from 'axios'
+import { displayAlert } from '../helpers'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
 
@@ -18,8 +20,17 @@ const initialFormData = Object.freeze({
  * Functional component that represents the entire Registration page
  */
 const RegistrationPage: React.FC = () => {
+    // Form field states 
     const [formData, setFormData] = React.useState(initialFormData);
     const [matchingPw, setMatchingPw] = React.useState('');
+
+    // Alert states
+    const [regSuccessAlert, showSuccessAlert] = React.useState(false);
+    const [missingFieldsAlert, showMissingFieldsAlert] = React.useState(false);
+    const [emailExistsAlert, showEmailExistsAlert] = React.useState(false);
+    const [usernameExistsAlert, showUsernameExistsAlert] = React.useState(false);
+    const [invalidEmailAlert, showInvalidEmailAlert] = React.useState(false);
+    const [pwMismatchAlert, showPwMismatchAlert] = React.useState(false);
 
     /**
      * Function expression for updating the state of the respective fields on any change  
@@ -48,19 +59,19 @@ const RegistrationPage: React.FC = () => {
         
         // Check if any input fields are left blank
         if(isEmpty || matchingPw === ""){
-            alert("Fill in the missing fields.");
+            displayAlert(showMissingFieldsAlert, 3000);
             return;
         }
 
         // Check if user entered a valid email
         if(!isEmail(formData["email"])){
-            alert("You entered a non-valid email.");
+            displayAlert(showInvalidEmailAlert, 3000);
             return;
         }
 
         // Check if both password fields match each other
         if (formData['password'] !== matchingPw){
-            alert("passwords don't match");
+            displayAlert(showPwMismatchAlert, 3000);
             return;
         }
 
@@ -73,17 +84,24 @@ const RegistrationPage: React.FC = () => {
                 // Reset the state/value of the form fields 
                 setFormData(initialFormData);
                 setMatchingPw("");
-                alert("You have successfully created an account!")
+                displayAlert(showSuccessAlert, 5000);
             })
             .catch(error => {
                 // NOTE: Need to use Bootstrap alert
-                alert("Something went wrong. Please try again later.");
-                console.log(error);
-            })
+                const errorMsg = error.response["data"];
+                if(errorMsg === "Email is already taken."){ displayAlert(showEmailExistsAlert, 5000) }
+                else if(errorMsg === "Username is already taken."){ displayAlert(showUsernameExistsAlert, 5000) }
+            });
     }
     return(
     <>
     <NavBar/>
+    <Alert className="success-alert" variant="success" show={regSuccessAlert}> Your account was successfully created! Please login to continue. </Alert>
+    <Alert className="failure-alert" variant="danger" show={missingFieldsAlert}> Fill in the missing field(s). </Alert>
+    <Alert className="failure-alert" variant="danger" show={usernameExistsAlert}> User account with the specified email already exists. Please use a different email. </Alert>
+    <Alert className="failure-alert" variant="danger" show={emailExistsAlert}> User account with the specified username already exists. Please use a different username. </Alert>
+    <Alert className="failure-alert" variant="danger" show={invalidEmailAlert}> You entered an invalid email. Please enter a valid email to create an account. </Alert>
+    <Alert className="failure-alert" variant="danger" show={pwMismatchAlert}> Passwords do not match. Please double-check and try again. </Alert>
     <div className='registration-text'>
         <h1>
             Sign up

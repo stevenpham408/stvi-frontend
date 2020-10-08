@@ -236,3 +236,9 @@
 .table{
     color: white;
 }
+
+.failure-alert{
+    width: 100%;
+    position: absolute;
+    text-align: center;
+}
