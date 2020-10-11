@@ -31,8 +31,9 @@ const config = Object.freeze({
 const LoginPage: React.FC = () => {
     const history = useHistory();
     const [loginData, setLoginData] = React.useState(initialLoginData);
-    const [loginFailedAlert, showLoginFailedAlert] = React.useState(false);
-    const [missingFieldsAlert, showMissingFieldsAlert] = React.useState(false);
+    // Alert states
+    const [alertVisibility, showAlert] = React.useState(false);
+    const [alertMsg, setAlertMsg] = React.useState("");
 
 
     const handleChange = (e : any) => {
@@ -51,7 +52,8 @@ const LoginPage: React.FC = () => {
         // Check for empty fields before making a request to the API
         let isEmpty = Object.values(loginData).some(element => element === "");
         if(isEmpty){
-            displayAlert(showMissingFieldsAlert,3000);
+            setAlertMsg("Fill in the missing field(s) and try again.")
+            displayAlert(showAlert,3000);
             return;
         }
 
@@ -65,17 +67,14 @@ const LoginPage: React.FC = () => {
                 }
             })
             .catch(error => {
-                displayAlert(showLoginFailedAlert, 3500);
-                console.log(error);
+                setAlertMsg("Login failed. Please double-check your credentials and try again.");
+                displayAlert(showAlert, 3500);
             })
     }
     return (
         <>
-            <NavBar/>
-            <Alert className="failure-alert" variant="danger" show={loginFailedAlert}> Login failed. Please double-check your username and password and try again. </Alert>
-            <Alert className="failure-alert" variant="danger" show={missingFieldsAlert}> Fill in the missing fields. </Alert>
-
-
+        <NavBar/>
+        <Alert className="failure-alert" variant="danger" show={alertVisibility} > <span className="alert-msg" >{alertMsg}</span> </Alert> 
             <div className="main-login-container">
                 <div className = "decorative-text">
                     <h1 className='standard-text'> Let's get to

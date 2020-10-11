@@ -25,12 +25,9 @@ const RegistrationPage: React.FC = () => {
     const [matchingPw, setMatchingPw] = React.useState('');
 
     // Alert states
-    const [regSuccessAlert, showSuccessAlert] = React.useState(false);
-    const [missingFieldsAlert, showMissingFieldsAlert] = React.useState(false);
-    const [emailExistsAlert, showEmailExistsAlert] = React.useState(false);
-    const [usernameExistsAlert, showUsernameExistsAlert] = React.useState(false);
-    const [invalidEmailAlert, showInvalidEmailAlert] = React.useState(false);
-    const [pwMismatchAlert, showPwMismatchAlert] = React.useState(false);
+    const [alertVariant, setAlertVariant] = React.useState("");
+    const [alertVisibility, showAlert] = React.useState(false);
+    const [alertMsg, setAlertMsg] = React.useState("");
 
     /**
      * Function expression for updating the state of the respective fields on any change  
@@ -59,19 +56,25 @@ const RegistrationPage: React.FC = () => {
         
         // Check if any input fields are left blank
         if(isEmpty || matchingPw === ""){
-            displayAlert(showMissingFieldsAlert, 3000);
+            setAlertMsg("Fill in the missing field(s).");
+            setAlertVariant("danger");
+            displayAlert(showAlert, 4000);
             return;
         }
 
         // Check if user entered a valid email
         if(!isEmail(formData["email"])){
-            displayAlert(showInvalidEmailAlert, 3000);
+            setAlertMsg("You entered an invalid email. Please enter a valid email and try again.");
+            setAlertVariant("danger");
+            displayAlert(showAlert, 4000);
             return;
         }
 
         // Check if both password fields match each other
         if (formData['password'] !== matchingPw){
-            displayAlert(showPwMismatchAlert, 3000);
+            setAlertMsg("The passwords you entered do not match each other. Please double-check and try again.");
+            setAlertVariant("danger");
+            displayAlert(showAlert, 4000);
             return;
         }
 
@@ -79,29 +82,22 @@ const RegistrationPage: React.FC = () => {
         axios.post("http://localhost:4040/registration", formData)
             .then(response => {
                 console.log(response);
-                // NOTE: Need to use Bootstrap alert
-
                 // Reset the state/value of the form fields 
                 setFormData(initialFormData);
                 setMatchingPw("");
-                displayAlert(showSuccessAlert, 5000);
             })
             .catch(error => {
-                // NOTE: Need to use Bootstrap alert
-                const errorMsg = error.response["data"];
-                if(errorMsg === "Email is already taken."){ displayAlert(showEmailExistsAlert, 5000) }
-                else if(errorMsg === "Username is already taken."){ displayAlert(showUsernameExistsAlert, 5000) }
+                const errorMsg: string = error.response["data"];
+                setAlertMsg(errorMsg);
+                setAlertVariant("danger");
+                if(errorMsg === "Email is already taken."){ displayAlert(showAlert, 4000) }
+                else if(errorMsg === "Username is already taken."){ displayAlert(showAlert, 4000) }
             });
     }
     return(
     <>
     <NavBar/>
-    <Alert className="success-alert" variant="success" show={regSuccessAlert}> Your account was successfully created! Please login to continue. </Alert>
-    <Alert className="failure-alert" variant="danger" show={missingFieldsAlert}> Fill in the missing field(s). </Alert>
-    <Alert className="failure-alert" variant="danger" show={usernameExistsAlert}> User account with the specified email already exists. Please use a different email. </Alert>
-    <Alert className="failure-alert" variant="danger" show={emailExistsAlert}> User account with the specified username already exists. Please use a different username. </Alert>
-    <Alert className="failure-alert" variant="danger" show={invalidEmailAlert}> You entered an invalid email. Please enter a valid email to create an account. </Alert>
-    <Alert className="failure-alert" variant="danger" show={pwMismatchAlert}> Passwords do not match. Please double-check and try again. </Alert>
+    <Alert className="alert" variant={alertVariant} show={alertVisibility}> <span className="alert-msg"> {alertMsg} </span> </Alert>
     <div className='registration-text'>
         <h1>
             Sign up
