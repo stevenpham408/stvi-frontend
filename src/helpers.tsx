@@ -1,6 +1,6 @@
-export const displayAlert = (fx:Function, ms: number) => {
-    fx(true);
+export const displayAlert = (alertVisibilityFx: (visibility : boolean) => void, ms: number) => {
+    alertVisibilityFx(true);
     setTimeout(()=>{
-        fx(false);
+        alertVisibilityFx(false);
     }, ms);
 }
