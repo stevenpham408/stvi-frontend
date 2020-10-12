@@ -48,15 +48,34 @@ const UserMainPage : React.FC = () => {
         fetchData();
     }, [setArrayUrl]);
 
-    const handleChange = (e:any) => {
+    const handleUrlClick = (e: any) => {
+        e.preventDefault();
+        const shortUrl: string = "http://localhost:4040/url/" + e.target.text.substring(15, 22);
+        axios.get(shortUrl, {withCredentials: true})
+        .then(response => {
+            console.log(response)
+            if(response.data.substring(0, 5) == "http" || response.data.substring(0,5) == "https"){
+                window.location.href = (response.data);
+            }
+            else{
+                window.location.href = "//" + response.data;
+            }
+        })
+        .catch(error => {
+            console.log("Error in getting the redirect link.");
+        });
+    }
+
+    const handleChange = (e: any) => {
         setUrlData({
             ...urlData,
             longUrl : e.target.value
         })    
+        alert(e.target);
     }
 
     const urlJsonPromise = async () => {
-        const promise = axios.get("http://localhost:4040/user/url");
+        const promise = axios.get("http://localhost:4040/user/url", {withCredentials: true});
         const dataPromise = promise.then((response) => response.data);
         return dataPromise;
     };
@@ -90,17 +109,28 @@ const UserMainPage : React.FC = () => {
                 </Form>
                 
                 <div className="url-container">
-                    {arrayUrl!.map((data, key) => {
-                    return (
-                        <div key={key}>
-                            {
-                                data.hash + "," +
-                                data.longUrl + "," +
-                                data.userId
-                            }
-                        </div>
-                    );
-                    })}
+                    <Table className="table">
+                        <thead>
+                            <tr>
+                                <td> Short URL </td>
+                                <td> Original URL </td>
+                                <td> User ID </td>
+                            </tr>
+                        </thead>
+                        {arrayUrl!.map((data, key) => {
+                            return (
+                                <tbody key={key}>
+                                    {
+                                        <tr>
+                                        <td> <a href={"http://localhost:3000/" + data.hash} onClick={handleUrlClick}>localhost:3000/{data.hash}</a> </td>
+                                        <td> {data.longUrl} </td>
+                                        <td> {data.userId} </td> 
+                                        </tr>
+                                    } 
+                                </tbody>
+                            );
+                        })}
+                    </Table>
                 </div>
 
                 {/* <Table className="table table-striped">
