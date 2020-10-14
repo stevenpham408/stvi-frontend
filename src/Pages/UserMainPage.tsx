@@ -48,24 +48,6 @@ const UserMainPage : React.FC = () => {
         fetchData();
     }, [setArrayUrl]);
 
-    const handleUrlClick = (e: any) => {
-        e.preventDefault();
-        const shortUrl: string = "http://localhost:4040/url/" + e.target.text.substring(15, 22);
-        axios.get(shortUrl, {withCredentials: true})
-        .then(response => {
-            console.log(response)
-            if(response.data.substring(0, 5) == "http" || response.data.substring(0,5) == "https"){
-                window.location.href = (response.data);
-            }
-            else{
-                window.location.href = "//" + response.data;
-            }
-        })
-        .catch(error => {
-            console.log("Error in getting the redirect link.");
-        });
-    }
-
     const handleChange = (e: any) => {
         setUrlData({
             ...urlData,
@@ -114,7 +96,7 @@ const UserMainPage : React.FC = () => {
                             <tr>
                                 <td> Short URL </td>
                                 <td> Original URL </td>
-                                <td> User ID </td>
+                                <td> User ID</td>
                             </tr>
                         </thead>
                         {arrayUrl!.map((data, key) => {
@@ -122,7 +104,7 @@ const UserMainPage : React.FC = () => {
                                 <tbody key={key}>
                                     {
                                         <tr>
-                                        <td> <a href={"http://localhost:3000/" + data.hash} onClick={handleUrlClick}>localhost:3000/{data.hash}</a> </td>
+                                        <td> <a href={"http://localhost:3000/" + data.hash}>localhost:3000/{data.hash}</a> </td>
                                         <td> {data.longUrl} </td>
                                         <td> {data.userId} </td> 
                                         </tr>
@@ -132,23 +114,6 @@ const UserMainPage : React.FC = () => {
                         })}
                     </Table>
                 </div>
-
-                {/* <Table className="table table-striped">
-                    <thead className='yesthead'>
-                        <tr>
-                            <th> Original URL </th>
-                            <th> Short URL </th>
-                            <th> # of clicks </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td> <a href="www.google.com"> www.google.com </a> </td>
-                            <td> <a href="short1"> short1 </a> </td>
-                            <td> 0 </td>
-                        </tr>
-                    </tbody>
-                </Table> */}
             </div>
     )
 }   

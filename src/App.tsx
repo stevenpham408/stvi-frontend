@@ -6,6 +6,7 @@ import LandingPage from './Pages/LandingPage'
 import RegistrationPage from './Pages/RegistrationPage'
 import LoginPage from './Pages/LoginPage'
 import UserMainPage from './Pages/UserMainPage'
+import getRedirection from './getRedirect';
 
 function App() {
   return (
@@ -13,9 +14,10 @@ function App() {
       <div className="App">
          <Switch>
           <Route path={'/'} exact> <LandingPage/> </Route>
-          <Route path={'/register'}> <RegistrationPage/> </Route>
-          <Route path={'/login'}> <LoginPage/> </Route>
-          <Route path={'/userpage'}> <UserMainPage/> </Route>
+          <Route path={'/register'} exact> <RegistrationPage/> </Route>
+          <Route path={'/login'} exact> <LoginPage/> </Route>
+          <Route path={'/userpage'} exact> <UserMainPage/> </Route>
+          <Route path={'/:url'} component={(getRedirection)} />
         </Switch>
         </div>
     </Router>
