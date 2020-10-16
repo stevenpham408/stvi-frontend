@@ -43,7 +43,7 @@ const GetStarted: React.FC = () => {
                 pellentesque bibendum vehicula. Vivamus augue ligula, faucibus feugiat enim quis, cursus sollicitudin ex. Vestibulum 
                 ante ipsum.
                 </p>
-                <Button id="Register" variant="flat" size="lg"> <a className="registerHref" href="register"> Register </a> </Button>
+                <Button id="Register" variant="flat" size="lg"><a className="registerHref" href="/register">Register</a></Button>
             </div>
         </div>
 
@@ -54,18 +54,18 @@ const InfoImages: React.FC = () => {
     return(             
             <div className="images">
                 <div className="imgContainer">
-                    <img src={API_Img} width="80px" height="80px"/>
+                    <img alt="API_Pic" src={API_Img} width="80px" height="80px"/>
                     <div className="caption">Communicates with a RESTful API backend written in Java with Spring Boot</div>
                 </div>
 
                 <div className="imgContainer">
-                    <img src={Monitor_Img} width="80px" height="80px"/> 
+                    <img alt="Monitor_Pic" src={Monitor_Img} width="80px" height="80px"/> 
                     <div className="caption">Handles user information securely with modern password encryption 
                                              practices with Spring Security and MySQL</div>
                 </div>
                 
                 <div className="imgContainer">
-                    <img src={UI_Img} width="80px" height="80px"/> 
+                    <img alt="UI_Pic" src={UI_Img} width="80px" height="80px"/> 
                     <div className="caption">Manages user session state using cookies stored in-memory through Spring Security</div>
                  </div> 
             </div>

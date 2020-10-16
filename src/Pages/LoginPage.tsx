@@ -35,7 +35,6 @@ const LoginPage: React.FC = () => {
     const [alertVisibility, showAlert] = React.useState(false);
     const [alertMsg, setAlertMsg] = React.useState("");
 
-
     const handleChange = (e : any) => {
         setLoginData({
             ...loginData,
@@ -48,12 +47,13 @@ const LoginPage: React.FC = () => {
      */
     const handleLogin = (e : any) => {
         e.preventDefault();
+        // showAlert(true);
         
         // Check for empty fields before making a request to the API
         let isEmpty = Object.values(loginData).some(element => element === "");
         if(isEmpty){
             setAlertMsg("Fill in the missing field(s) and try again.")
-            displayAlert(showAlert,3000);
+            showAlert(true);
             return;
         }
 
@@ -63,18 +63,23 @@ const LoginPage: React.FC = () => {
             .then(response => {
                 // If the response is OK, then we can redirect the newly authenticated user to the user page
                 if(response.status === 200){
+                    console.log("hey hi hello no");
                     history.push('/userpage');
+                }
+                else{
+                    setAlertMsg("Login failed. Please double-check your credentials and try again.");
+                    showAlert(true);
                 }
             })
             .catch(error => {
-                setAlertMsg("Login failed. Please double-check your credentials and try again.");
-                displayAlert(showAlert, 3500);
-            })
+                setAlertMsg("Catch");
+                showAlert(true);
+            });
     }
     return (
         <>
-        <NavBar/>
-        <Alert className="failure-alert" variant="danger" show={alertVisibility} > <span className="alert-msg" >{alertMsg}</span> </Alert> 
+        <NavBar/>   
+        <Alert role="alert" className="failure-alert" variant="danger" show={alertVisibility}>{alertMsg}</Alert> 
             <div className="main-login-container">
                 <div className = "decorative-text">
                     <h1 className='standard-text'> Let's get to
@@ -85,7 +90,7 @@ const LoginPage: React.FC = () => {
                 <div className='login-form-container'>
                     <div className='login-text'>
                         <h1>
-                            Log in to stvi
+                            Welcome Back!
                         </h1>
                         <h2>
                             Good to see you again
