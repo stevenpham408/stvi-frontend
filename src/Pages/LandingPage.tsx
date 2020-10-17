@@ -8,9 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import API_Img from '../Images/API Development.svg'
 import Monitor_Img from '../Images/Monitor with Lock.svg'
 import UI_Img from '../Images/UI Design.svg'
-
 import './styles.css'
-
 
 const MyTypist: React.FC = () => {
     return(
