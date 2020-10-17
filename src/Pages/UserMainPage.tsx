@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import isUrl from 'validator/lib/isUrl'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'

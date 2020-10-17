@@ -9,6 +9,7 @@ import { useHistory  } from "react-router-dom";
 import { displayAlert } from "../helpers"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
+import { displayPartsToString } from 'typescript'
 
 // Initial state for the login form, freeze it to prevent any changes from occurring
 const initialLoginData = Object.freeze({
@@ -47,13 +48,12 @@ const LoginPage: React.FC = () => {
      */
     const handleLogin = (e : any) => {
         e.preventDefault();
-        // showAlert(true);
         
         // Check for empty fields before making a request to the API
         let isEmpty = Object.values(loginData).some(element => element === "");
         if(isEmpty){
             setAlertMsg("Fill in the missing field(s) and try again.")
-            showAlert(true);
+            displayAlert(showAlert, 5000);
             return;
         }
 
@@ -63,17 +63,16 @@ const LoginPage: React.FC = () => {
             .then(response => {
                 // If the response is OK, then we can redirect the newly authenticated user to the user page
                 if(response.status === 200){
-                    console.log("hey hi hello no");
                     history.push('/userpage');
                 }
                 else{
                     setAlertMsg("Login failed. Please double-check your credentials and try again.");
-                    showAlert(true);
+                    displayAlert(showAlert, 5000);
                 }
             })
             .catch(error => {
                 setAlertMsg("Catch");
-                showAlert(true);
+                displayAlert(showAlert, 5000);
             });
     }
     return (

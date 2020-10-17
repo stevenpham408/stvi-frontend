@@ -32,7 +32,7 @@ const MyTypist: React.FC = () => {
 const GetStarted: React.FC = () => {
     return(
         <div className='getStarted'>
-            <img id="chain"src={Chain_Img}></img>
+            <img alt="chain" id="chain"src={Chain_Img}></img>
             <div>
                 <h1 id='hook'> 
                     <strong> Shorten your long, unsightly URLs with a click of a button. </strong> 
