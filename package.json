@@ -25,6 +25,7 @@
     "validator": "^13.1.17"
   },
   "scripts": {
+    "lint": "eslint --ext js,ts,tsx src",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
