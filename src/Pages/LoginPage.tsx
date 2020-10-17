@@ -9,7 +9,6 @@ import { useHistory  } from "react-router-dom";
 import { displayAlert } from "../helpers"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
-import { displayPartsToString } from 'typescript'
 
 // Initial state for the login form, freeze it to prevent any changes from occurring
 const initialLoginData = Object.freeze({

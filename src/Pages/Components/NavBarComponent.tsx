@@ -1,4 +1,3 @@
-import { linkSync } from 'fs'
 import React from 'react'
 import styled from 'styled-components'
 import Logo from '../../Images/Logo.png'
