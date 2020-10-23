@@ -6,8 +6,10 @@ import NavBar from './Components/NavBarComponent'
 import isEmail from 'validator/lib/isEmail'
 import axios from 'axios'
 import { displayAlert } from '../helpers'
+import DanceImg from '../Images/Dancing.svg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
+document.body.style.background = "#F2F2F2";
 
 // Initial state for the registration form, freeze it to prevent any changes from occurring
 const initialFormData = Object.freeze({
@@ -94,68 +96,69 @@ const RegistrationPage: React.FC = () => {
                 else if(errorMsg === "Username is already taken."){ displayAlert(showAlert, 4000) }
             });
     }
+
     return(
-    <>
-    <NavBar/>
-    <Alert className="alert" variant={alertVariant} show={alertVisibility}> <span className="alert-msg"> {alertMsg} </span> </Alert>
-    <div className='registration-text'>
-        <h1>
-            Sign up
-        </h1>
-        <h2>
-            It's quick and easy with stvi    
-        </h2>
+    <div className="registration-page">
+        <Alert className="fixed-top" variant={alertVariant} show={alertVisibility}> <span className="alert-msg"> {alertMsg} </span> </Alert>
+        <div className="registration-main-container">
+            <img alt="dancing_img" className="registration-img" src={DanceImg} height="350"/>
+            <div className="registration-sub-container">
+                <div className='registration-text'>
+                    <h1>Sign up</h1>
+                    <h2>It's quick and easy with stvi</h2>
+                </div>
+                
+                <div className='registration-form-container'>
+                    <Form>
+                        <div className='form-group'>
+                            <label> Email </label>
+                            <input type="email" 
+                            name="email" 
+                            value={formData["email"]}
+                            className="form-control" 
+                            id="registrationInputEmail" 
+                            placeholder="Enter email" 
+                            onChange={handleChange}/>
+                        </div>
+
+                        <div className='form-group'>
+                            <label> Username </label>
+                            <input type="text" 
+                            name="username" 
+                            value={formData["username"]}
+                            className="form-control" 
+                            id="registrationInputUsername" 
+                            placeholder="Enter desired username" 
+                            onChange={handleChange}/>
+                        </div>
+
+                        <div className='form-group'>
+                            <label> Password </label>
+                            <input type="password" 
+                            name="password" 
+                            value={formData["password"]}
+                            className="form-control" 
+                            id="registrationInputPw" 
+                            placeholder="Enter password" 
+                            onChange={handleChange}/>
+                        </div>
+
+                        <div className='form-group'>
+                            <label> Confirm Password </label>
+                            <input type="password" 
+                            name="matchingPassword" 
+                            value={matchingPw}
+                            className="form-control" 
+                            id="registrationConfirmPw" 
+                            placeholder="Re-enter password" 
+                            onChange={(e) => {setMatchingPw(e.target.value)}}/>
+                        </div>
+                        <Button type="submit" className="btn btn-flat" id="register-button" onClick={handleSubmit}>Create an Account</Button>
+                    </Form> 
+                </div>                 
+            </div>
+        </div>
     </div>
-    <div className='registration-form-container'>
-        <Form>
-            <div className='form-group'>
-                <label> Email </label>
-                <input type="email" 
-                name="email" 
-                value={formData["email"]}
-                className="form-control" 
-                id="registrationInputEmail" 
-                placeholder="Enter email" 
-                onChange={handleChange}/>
-            </div>
-
-            <div className='form-group'>
-                <label> Username </label>
-                <input type="text" 
-                name="username" 
-                value={formData["username"]}
-                className="form-control" 
-                id="registrationInputUsername" 
-                placeholder="Username" 
-                onChange={handleChange}/>
-            </div>
-
-            <div className='form-group'>
-                <label> Password </label>
-                <input type="password" 
-                name="password" 
-                value={formData["password"]}
-                className="form-control" 
-                id="registrationInputPw" 
-                placeholder="Password" 
-                onChange={handleChange}/>
-            </div>
-
-            <div className='form-group'>
-                <label> Confirm Password </label>
-                <input type="password" 
-                name="matchingPassword" 
-                value={matchingPw}
-                className="form-control" 
-                id="registrationConfirmPw" 
-                placeholder="Confirm password" 
-                onChange={(e) => {setMatchingPw(e.target.value)}}/>
-            </div>
-            
-            <Button type="submit" className="btn btn-flat" id="register-button" onClick={handleSubmit}>Submit</Button>
-        </Form> 
-    </div> 
-    </>
     );
 };
 
