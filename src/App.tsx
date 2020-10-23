@@ -7,7 +7,7 @@ import RegistrationPage from './Pages/RegistrationPage'
 import LoginPage from './Pages/LoginPage'
 import UserMainPage from './Pages/UserMainPage'
 import ProtectedRoutes from './Pages/Components/ProtectedRoutes'
-import {getRedirection} from './getRedirect';
+import getRedirection from './getRedirect';
 function App() {
   return (
     <div className="App">
