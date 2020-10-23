@@ -5,7 +5,9 @@ import LandingPage from '../LandingPage'
 it("should render button correctly", () => {
     const root = document.createElement("div");
     ReactDOM.render(<LandingPage/>, root)
-    expect(root.querySelector("Button")!.textContent).toBe("Register");
+    expect(root.querySelectorAll("Button")[0]!.textContent).toBe("LOGIN");
+    expect(root.querySelectorAll("Button")[1]!.textContent).toBe("Register for free");
+
 });
 
 it("should send user to /register page on click", () => {
