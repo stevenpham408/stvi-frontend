@@ -6,12 +6,7 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #201E22;
-}
-
-html {
-  overflow: hidden;
-  height: 103%;
+  background-color: #F9F9F9;
 }
 
 body {

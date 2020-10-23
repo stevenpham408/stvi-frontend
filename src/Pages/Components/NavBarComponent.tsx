@@ -1,59 +1,31 @@
 import React from 'react'
+import Navbar from 'react-bootstrap/Navbar'
+import Nav from 'react-bootstrap/Nav'
+import Button from 'react-bootstrap/Button'
 import styled from 'styled-components'
+import '../styles.css'
 import Logo from '../../Images/Logo.png'
 
-
-const NavBarStyles = styled.div`
-    .NavBar{
-        overflow: hidden;   
-        background-color: black;
-        width: 100%;
-        height: 3.4375rem;
-    }
-
-    .NavBar a{
-        letter-spacing: 2.5px;
-        color: white;
-        float: right;
-        padding: 16px 16px; 
-        text-align: center;
-        text-decoration: none;
-    }
-
-    .NavBar .rightMost {
-        margin-right: 62px;
-    }
-
-    .NavBar .rightMost a:hover {
-        background-color: #6F24CB;
-        color: white;
-    }
-       
-    #Logo {
-        float: left;
-        padding: 0;
-        margin-left: 2%;
-        margin-top: 2px;
-
-        img {
-            width: 78px;
-            length: 55px;
-        }
-    }
-    
+const StyledNavBar = styled.div`
+.color-nav{
+    background-color: red;
+}
 `
-
 const NavBar : React.FC = () => {
     return(
-            <NavBarStyles>
-                  <div className='NavBar'>
-                      <div className='rightMost'>
-                          <a href="login"> Login </a>
-                          <a href="#about"> About </a>
-                       </div>
-                      <a id="Logo" href="/"> <img alt="logo" src={Logo}/> </a>
-                  </div>
-        </NavBarStyles>
+    <Nav className="justify-content-center" activeKey="/home">
+        <Nav.Item>
+                <Navbar.Brand><img alt="stvi_logo" className="navbar-logo" src={Logo} height="60px"/></Navbar.Brand>
+        </Nav.Item>
+        
+        <Nav.Item className="navbar-reg-item">
+            <Nav.Link eventKey="link-1">ABOUT</Nav.Link>
+        </Nav.Item>
+        <Nav.Item className="navbar-button-item">
+            <Nav.Link ><Button variant="outline-light" size="sm"><strong>LOGIN</strong></Button></Nav.Link>
+        </Nav.Item>
+
+  </Nav>
     );
 }
 
