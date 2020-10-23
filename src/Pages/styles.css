@@ -202,17 +202,15 @@
     color: black !important;
 } 
 /* ---------------------------------------------------- LoginPage.tsx ----------------------------------------------------*/
-.Login-Page{
+.login-page-container{
     background-color: #F2F2F2;
-}
-
-.main-login-container{
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top:10%;
     margin-left: 0%;
 }
+
 .decorative-text{
     width: fit-content; 
     padding-top: 5%;
@@ -256,18 +254,13 @@
 .form-control:focus{border-color: white; color:white; background-color:#2E2E32; box-shadow: none; -webkit-box-shadow: none;} 
 
 .login-form-container{
-    text-align: center;
-    width: 30vw;
-    max-width: 35%;
-    height: 100%;
-    background-color: #2E2E32;
-    padding-bottom: 1.5rem;
+    height: 300px;
 }
 
 .login-text{
     text-align: center;
-    background-color: #201E22;
-    color: white;
+    background-color: #F2F2F2;
+    color: black;
     padding-bottom: 5%;
 }
 
@@ -275,8 +268,13 @@
     font-size:calc(1.45rem + 0.2vh);
 }
 
+.login-button{
+    margin-top: 4%;
+    width: 80% !important;
+}
+
 @media (max-width: 800px){
-    .main-login-container{
+    .login-page-container{
         flex-direction: column;
         justify-content: center;
     } 

@@ -5,7 +5,8 @@ import Alert from 'react-bootstrap/Alert'
 import NavBar from './Components/NavBarComponent'
 import axios from 'axios'
 import qs from 'query-string'
-import { useHistory  } from "react-router-dom";
+
+import { useHistory, Redirect, Route  } from "react-router-dom";
 import { displayAlert } from "../helpers"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
@@ -31,11 +32,21 @@ const config = Object.freeze({
 const LoginPage: React.FC = () => {
     const history = useHistory();
     const [loginData, setLoginData] = React.useState(initialLoginData);
+    const [isAuth, setAuth] = React.useState(false);
+
     // Alert states
     const [alertVisibility, showAlert] = React.useState(false);
     const [alertMsg, setAlertMsg] = React.useState("");
 
-    const handleChange = (e : any) => {
+    React.useEffect(()=>{
+        const fetchAuth = async () => {
+            const response = await axios.get("http://localhost:4040/user/auth", {withCredentials: true})
+            setAuth(response.data);
+        }
+        fetchAuth();
+    }, [])
+
+    const handleFieldChange = (e : any) => {
         setLoginData({
             ...loginData,
             [e.target.name] : e.target.value
@@ -74,28 +85,29 @@ const LoginPage: React.FC = () => {
                 displayAlert(showAlert, 5000);
             });
     }
+
+
     return (
-        <>
-        <NavBar/>   
-        <Alert role="alert" className="failure-alert" variant="danger" show={alertVisibility}>{alertMsg}</Alert> 
-            <div className="main-login-container">
+        <div className="Login-Page">
+        <Alert role="alert" className="fixed-top" variant="danger" show={alertVisibility}>{alertMsg}</Alert> 
+            <div className="login-page-container">
                 <div className = "decorative-text">
                     <h1 className='standard-text'> Let's get to
                         <span className='colored-text'> work. </span> 
                     </h1>
                 </div>
                 
-                <div className='login-form-container'>
+                <div className='login-form-main-container'>
                     <div className='login-text'>
                         <h1>
                             Welcome Back!
                         </h1>
-                        <h2>
+                        <h2> 
                             Good to see you again
                         </h2>
                     </div>
 
-                    <Form>
+                    <Form className='registration-form-container login-form-container'>
                         <div className='form-group'>
                             <label> Username </label>
                             <input type="text" 
@@ -104,7 +116,7 @@ const LoginPage: React.FC = () => {
                             className="form-control" 
                             id="registrationInputUsername" 
                             placeholder="Username" 
-                            onChange={handleChange}
+                            onChange={handleFieldChange}
                             />
                         </div>
             
@@ -116,15 +128,15 @@ const LoginPage: React.FC = () => {
                             className="form-control" 
                             id="registrationInputPw" 
                             placeholder="Password" 
-                            onChange={handleChange}
+                            onChange={handleFieldChange}
                             />
                         </div>
-                        <Button type="submit" className="btn-lg btn-flat" id="login-button" onClick={handleLogin}>Log in</Button>
+                        <Button type="submit" className="btn-lg btn-flat login-button" id="login-button" onClick={handleLogin}>Log in</Button>
                     </Form> 
                 </div> 
             </div>
-        </>
-    );
+        </div>
+    )
 };
 
 export default LoginPage
