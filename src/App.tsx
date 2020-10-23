@@ -6,21 +6,21 @@ import LandingPage from './Pages/LandingPage'
 import RegistrationPage from './Pages/RegistrationPage'
 import LoginPage from './Pages/LoginPage'
 import UserMainPage from './Pages/UserMainPage'
-import getRedirection from './getRedirect';
-
+import ProtectedRoutes from './Pages/Components/ProtectedRoutes'
+import {getRedirection} from './getRedirect';
 function App() {
   return (
-    <Router>
-      <div className="App">
-         <Switch>
-          <Route path={'/'} exact> <LandingPage/> </Route>
-          <Route path={'/register'} exact> <RegistrationPage/> </Route>
-          <Route path={'/login'} exact> <LoginPage/> </Route>
-          <Route path={'/userpage'} exact> <UserMainPage/> </Route>
-          <Route path={'/:url'} component={(getRedirection)} />
-        </Switch>
-        </div>
-    </Router>
+    <div className="App">
+      <Router>
+          <Switch>
+            <Route path={'/'} exact> <LandingPage/> </Route>
+            <Route path={'/register'} exact> <RegistrationPage/> </Route>
+            <Route path={'/login'} exact> <LoginPage/> </Route>
+            <ProtectedRoutes path='/userpage' component={UserMainPage}/>
+            <Route path={'/:url'} component={(getRedirection)} />
+          </Switch>
+      </Router>
+    </div>
   );
 }
 
