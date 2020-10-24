@@ -1,4 +1,7 @@
-*{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap');
+
+*:not(.getStarted){
     font-family: "Nunito Sans", sans-serif;
 }
 
@@ -44,10 +47,11 @@
     margin-top: 8%;
 }
 
-.getStarted #hook{
-    width: 100%;
+.getStarted h1{
+    font-family: 'Montserrat', sans-serif; 
+    width: max-content;
     color: #F0F0F0;
-    font-size: 2.8rem;  
+    font-size: 2.7rem;  
     letter-spacing: 2px;
 }
 
@@ -264,6 +268,10 @@
     padding-bottom: 5%;
 }
 
+.login-text h1{
+    font-family: 'Montserrat', sans-serif;
+}
+
 .login-text h2{
     font-size:calc(1.45rem + 0.2vh);
 }
@@ -304,3 +312,48 @@
     width: 100%;
     text-align: center;
 }
+
+/* ---------------------------------------------------- UserMainPage.tsx ----------------------------------------------------*/
+
+.user-main-page-decoration{
+    background-color: #05041A;
+    text-align: center;
+    height: 250px;
+}
+
+.user-main-page-decoration h1{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 70px;
+    letter-spacing: 0.5px;
+    background-color: #05041A;
+    text-align: center;
+}
+
+.urlshorten-form-group input{
+    width: 675px;
+    height: 45px;
+}
+
+.shortener-container Form{
+    text-align: center;
+    margin: 0 auto;
+}
+
+.btn-shorten {
+    height: 45px;
+    margin-bottom: 4px;
+    margin-left: 5px;
+}
+
+.url-container{
+    width: 50%;
+    margin:0 auto;
+}
+
+.table td{
+    color: black;
+    table-layout: fixed;
+    width: 10%;
+
+}
+
