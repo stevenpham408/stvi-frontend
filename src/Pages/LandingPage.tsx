@@ -15,7 +15,7 @@ const GetStarted: React.FC = () => {
             <div className='getStarted'>
                 <div>
                     <h1 id='hook'> 
-                        <strong> Ugly URL? Cut the fluff. </strong> 
+                     Ugly URL? Cut the fluff. 
                     </h1>
                     <p className='description'>
                     Stvi is a URL shortener that will help you grow and nurture your brand.
@@ -25,9 +25,7 @@ const GetStarted: React.FC = () => {
                 </div>
             </div>
             <img className="office_img" alt="Office_Pic" src={Office_Img} draggable="false"/> 
-
         </div>
-
     );
 };
 

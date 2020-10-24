@@ -2,11 +2,10 @@ import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert'
-import NavBar from './Components/NavBarComponent'
 import axios from 'axios'
 import qs from 'query-string'
 
-import { useHistory, Redirect, Route  } from "react-router-dom";
+import {useHistory, Redirect} from "react-router-dom";
 import { displayAlert } from "../helpers"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
@@ -41,7 +40,9 @@ const LoginPage: React.FC = () => {
     React.useEffect(()=>{
         const fetchAuth = async () => {
             const response = await axios.get("http://localhost:4040/user/auth", {withCredentials: true})
-            setAuth(response.data);
+            if(response.data === true){
+                setAuth(true);
+            }
         }
         fetchAuth();
     }, [])
@@ -86,7 +87,11 @@ const LoginPage: React.FC = () => {
             });
     }
 
-
+    if(isAuth === true){
+        return (
+            <Redirect to={{pathname: "/userpage"}}/>
+        )
+    }
     return (
         <div className="Login-Page">
         <Alert role="alert" className="fixed-top" variant="danger" show={alertVisibility}>{alertMsg}</Alert> 
