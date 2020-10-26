@@ -8,6 +8,7 @@ import Monitor_Img from '../Images/Monitor with Lock.svg'
 import UI_Img from '../Images/UI Design.svg'
 import './styles.css'
 import Office_Img from '../Images/Office.svg'
+import { Link } from 'react-router-dom'
 
 const GetStarted: React.FC = () => {
     return(
@@ -15,13 +16,13 @@ const GetStarted: React.FC = () => {
             <div className='getStarted'>
                 <div>
                     <h1 id='hook'> 
-                     Ugly URL? Cut the fluff. 
+                        <strong> Ugly URL? Cut the fluff. </strong> 
                     </h1>
                     <p className='description'>
                     Stvi is a URL shortener that will help you grow and nurture your brand.
                     </p>
-                    <Button id="Register" variant="flat" size="lg"><a className="registerHref" href="/register">Register for free</a></Button>
-                    <p className='member-already'>Already a member? <a href="/login"> Sign in </a></p>
+                    <Link to={"/login"}><Button className="register-btn" variant="flat" size="lg">Register for Free</Button></Link>
+                    <p className='member-already'>Already a member? <Link to={"/login"}> Sign in </Link></p>
                 </div>
             </div>
             <img className="office_img" alt="Office_Pic" src={Office_Img} draggable="false"/> 
