@@ -67,12 +67,9 @@
     height: 370px;
 }
 
-#Register{
+.register-btn{
+    color: #E9E9E9 !important;
     letter-spacing: 1.5px;
-}
-
-.registerHref {
-    color:  #E9E9E9;
 }
 
 .btn-flat {
