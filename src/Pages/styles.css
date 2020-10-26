@@ -351,6 +351,8 @@
     color: black;
     table-layout: fixed;
     width: 10%;
-
 }
 
+.delete-img{
+    cursor: pointer;
+}

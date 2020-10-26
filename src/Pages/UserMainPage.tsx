@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { MouseEvent } from 'react'
 import axios from 'axios'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Table from 'react-bootstrap/Table'
 import {useHistory} from 'react-router-dom'
 import Nav from 'react-bootstrap/Nav'
+import Trashcan from '../Images/Trashcan.svg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'   
 
@@ -39,7 +40,7 @@ const config = Object.freeze({
 const UserMainPage : React.FC = () => {
     const history = useHistory();
     const [urlData, setUrlData] = React.useState(initialUrlData);
-    const [arrayUrl, setArrayUrl] = React.useState<urlJson[] | null>([])
+    const [arrayUrl, setArrayUrl] = React.useState<urlJson[]>([])
     axios.defaults.withCredentials = true;
 
     React.useEffect( () => {
@@ -51,14 +52,28 @@ const UserMainPage : React.FC = () => {
         fetchData();
     }, [setArrayUrl]);
 
-    const handleChange = (e: any) => {
+    const handleRowDelete = (key: number, hash: string) => {
+        const urlReq = "http://localhost:4040/delete/url?hash=" + hash;
+        const newArray = [...arrayUrl];
+        newArray.splice(key, 1);
+
+        axios.delete(urlReq, config)
+            .then(response => {
+                setArrayUrl(newArray);
+            })
+            .catch(error => {
+                console.log(error)
+            })
+    }
+
+    const handleFieldChange = (e: any) => {
         setUrlData({
             ...urlData,
             longUrl : e.target.value
         })    
     }
 
-    const handleLogout = (e: any) => {
+    const handleLogout = (e: MouseEvent<HTMLButtonElement>) => {
         axios.post("http://localhost:4040/logout", config)
             .then((response)=> {
                 if(response.status === 200){
@@ -107,7 +122,7 @@ const UserMainPage : React.FC = () => {
                             value={urlData["longUrl"]}
                             className="urlform-control" 
                             placeholder="Input URL here" 
-                            onChange={handleChange}
+                            onChange={handleFieldChange}
                         />
                         <Button type="submit" className="btn-flat btn-shorten" onClick={handleLogin} >Shorten</Button>
                     </div> 
@@ -126,8 +141,12 @@ const UserMainPage : React.FC = () => {
                                 <tbody key={key}>
                                     {
                                         <tr>
+                                        <td> {key} </td>
                                         <td> <a href={"http://localhost:3000/" + data.hash}>localhost:3000/{data.hash}</a> </td>
                                         <td> {data.longUrl} </td>
+                                        <td> 
+                                            <img alt="trashcan-img" src={Trashcan} width="32px" height="32px" draggable="false" onClick={() => handleRowDelete(key, data.hash)}/>
+                                        </td>
                                         </tr>
                                     } 
                                 </tbody>
