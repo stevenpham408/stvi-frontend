@@ -17,6 +17,14 @@ const initialFormData = Object.freeze({
     password : "",
 })
 
+const config = Object.freeze({
+    withCredentials: true,  
+    headers: {
+      crossDomain: true, 
+      'Access-Control-Allow-Origin' : 'http://localhost:4040',
+    },
+});
+
 /**
  * Functional component that represents the entire Registration page
  */
@@ -80,12 +88,14 @@ const RegistrationPage: React.FC = () => {
         }
 
         // Make a post request to the API 
-        axios.post("http://localhost:4040/registration", formData)
+        axios.post("http://localhost:4040/registration", formData, config)
             .then(response => {
                 console.log(response);
                 // Reset the state/value of the form fields 
                 setFormData(initialFormData);
                 setMatchingPw("");
+                setAlertMsg("You have successfully created an account!")
+                displayAlert(showAlert, 5000);
             })
             .catch(error => {
                 const errorMsg: string = error.response["data"];
