@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom'
 import LandingPage from '../LandingPage'
-import {BrowserRouter, MemoryRouter} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 
 const root = document.createElement("div");
 ReactDOM.render(<BrowserRouter><LandingPage/></BrowserRouter>, root)
