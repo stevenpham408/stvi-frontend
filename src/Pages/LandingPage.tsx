@@ -21,7 +21,7 @@ const GetStarted: React.FC = () => {
                     <p className='description'>
                     Stvi is a URL shortener that will help you grow and nurture your brand.
                     </p>
-                    <Link to={"/login"}><Button className="register-btn" variant="flat" size="lg">Register for Free</Button></Link>
+                    <Link to={"/register"}><Button className="register-btn" variant="flat" size="lg">Register for Free</Button></Link>
                     <p className='member-already'>Already a member? <Link to={"/login"}> Sign in </Link></p>
                 </div>
             </div>
