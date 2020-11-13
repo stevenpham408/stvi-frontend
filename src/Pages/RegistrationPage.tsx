@@ -8,7 +8,6 @@ import { displayAlert } from '../helpers'
 import DanceImg from '../Images/Dancing.svg'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './styles.css'
-document.body.style.background = "#F2F2F2";
 
 // Initial state for the registration form, freeze it to prevent any changes from occurring
 const initialFormData = Object.freeze({
@@ -29,6 +28,8 @@ const config = Object.freeze({
  * Functional component that represents the entire Registration page
  */
 const RegistrationPage: React.FC = () => {
+    document.body.style.background = "#f2f2f2";
+
     // Form field states 
     const [formData, setFormData] = React.useState(initialFormData);
     const [matchingPw, setMatchingPw] = React.useState('');
@@ -110,7 +111,7 @@ const RegistrationPage: React.FC = () => {
     <div className="registration-page">
         <Alert className="fixed-top" variant={alertVariant} show={alertVisibility}> <span className="alert-msg"> {alertMsg} </span> </Alert>
         <div className="registration-main-container">
-            <img alt="dancing_img" className="registration-img" src={DanceImg} height="350"/>
+            <img alt="dancing_img" className="registration-img" src={DanceImg} height="350" draggable="false"/>
             <div className="registration-sub-container">
                 <div className='registration-text'>
                     <h1>Sign up</h1>

@@ -9,8 +9,10 @@ import UI_Img from '../Images/UI Design.svg'
 import './styles.css'
 import Office_Img from '../Images/Office.svg'
 import { Link } from 'react-router-dom'
-
 const GetStarted: React.FC = () => {
+    React.useEffect(() => {
+        document.body.style.background = "#fffff";
+    }, [])
     return(
         <div className='container'>
             <div className='getStarted'>
@@ -37,18 +39,18 @@ const InfoImages: React.FC = () => {
             <p className="what-else">—What else does this web app do?—</p>
                 <div className="images">
                     <div className="imgContainer">
-                        <img alt="API_Pic" src={API_Img} width="80px" height="80px"/>
+                        <img alt="API_Pic" src={API_Img} width="80px" height="80px" draggable="false"/>
                         <div className="caption">Communicates with a RESTful API backend written in Java with Spring Boot</div>
                     </div>
 
                     <div className="imgContainer">
-                        <img alt="Monitor_Pic" src={Monitor_Img} width="80px" height="80px"/> 
+                        <img alt="Monitor_Pic" src={Monitor_Img} width="80px" height="80px" draggable="false"/> 
                         <div className="caption">Handles user information securely with modern password encryption 
                                                 practices with Spring Security and MySQL</div>
                     </div>
                     
                     <div className="imgContainer">
-                        <img alt="UI_Pic" src={UI_Img} width="80px" height="80px"/> 
+                        <img alt="UI_Pic" src={UI_Img} width="80px" height="80px" draggable="false"/> 
                         <div className="caption">Manages user session state using cookies stored in-memory through Spring Security</div>
                     </div> 
                 </div>

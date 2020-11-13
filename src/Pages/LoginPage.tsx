@@ -29,6 +29,7 @@ const config = Object.freeze({
  * Functional component that represents the entire Login page
  */
 const LoginPage: React.FC = () => {
+    document.body.style.background = "#f2f2f2";
     const history = useHistory();
     const [loginData, setLoginData] = React.useState(initialLoginData);
     const [isAuth, setAuth] = React.useState(false);
@@ -37,7 +38,7 @@ const LoginPage: React.FC = () => {
     const [alertVisibility, showAlert] = React.useState(false);
     const [alertMsg, setAlertMsg] = React.useState("");
 
-    React.useEffect(()=>{
+    React.useEffect(() => {
         const fetchAuth = async () => {
             const response = await axios.get("http://localhost:4040/user/auth", {withCredentials: true})
             if(response.data === true){
