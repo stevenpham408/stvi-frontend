@@ -11,7 +11,7 @@
 }
 
 .navbar-reg-item{
-    margin-left: 850px;
+    padding-left: calc(55% + 50px);
     margin-top: 20px;
     height: min-content;
 }
@@ -30,16 +30,17 @@
 .navbar-reg-item > a:hover{
     color: white;
 }
+
 .container{
+    flex: 1;
     display: flex;
     flex-direction: row;
-    max-height: 100%;
     justify-content: center;
 }
 
 .half-block-decoration{
     background-color: #05041A;
-    height: 380px;
+    height: 55%;
 }
 
 .getStarted {
@@ -49,7 +50,6 @@
 
 .getStarted h1{
     font-family: 'Montserrat', sans-serif; 
-    width: max-content;
     color: #F0F0F0;
     font-size: 2.7rem;  
     letter-spacing: 2px;
@@ -124,16 +124,15 @@
     letter-spacing: 1.5px;
     text-align: center;
     font-size: 20px;
-    margin-top: 4%;
+    margin-top: 5vh;
 }
+
 .images {
     display:block;
-    width: 1200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
     text-align:center;
-    margin-left: auto;
-    margin-right: auto;
-
+    margin: 0 auto;
 }
 
 .imgContainer{
@@ -151,9 +150,59 @@
     letter-spacing: 0.65px;
     margin-left: auto;
     margin-right: auto;
-    width: 250px; 
+    width: 280px; 
 }
 
+
+@media 
+only screen and (max-width: 1200px){
+    .getStarted{
+        text-align: center;
+    }
+    .imgContainer{
+        width: 32%;
+    }
+
+    .imgContainer .caption{
+        width: 200px;
+    }
+}
+
+@media
+only screen and (min-height: 800px){
+    .imgContainer{
+        display: block;
+        margin-bottom: 2%;
+    }
+}
+@media 
+only screen and (max-width: 990px){
+
+    .office_img{
+        margin: 0 auto;
+        width: 100%;
+        height: 100%;
+    }
+    .container{
+        flex-direction: column;
+    }
+    .imgContainer{
+        width: 300px;
+    }
+    .navbar-reg-item{
+        padding-left: 55%;
+    }
+    .caption{
+        margin-bottom: 10%;
+    }
+}
+
+@media 
+only screen and (max-width: 500px){
+    .navbar-reg-item{
+        padding-left: 0%;
+    }
+}
 /* ---------------------------------------------------- RegistrationPage.tsx ----------------------------------------------------*/
 .registration-page{
     background-color: #F2F2F2;
@@ -168,16 +217,15 @@
     display: flex;
     flex-direction: row;
     margin-top: 7%;
-    margin-left: 300px;
+    margin-left: calc(30% - 300px);
     justify-content: center;
-
 }
 
 .registration-sub-container{
     display: flex;
     align-items: center;    
     flex-direction: column;
-    width: 1000px;
+    width: 100%;
 }
 
 .registration-text{
@@ -193,7 +241,7 @@
 .registration-form-container{
     text-align: center;
     width: 550px;
-    height: 440px;
+    height: 440px; 
     margin-top: 0.5%;
     background-color: white;
     box-shadow: 0 0 10px 2px #e2e2e2;
@@ -202,6 +250,21 @@
 .registration-form-container label{
     color: black !important;
 } 
+
+@media
+only screen and (max-width: 900px){
+
+    .registration-main-container{
+        margin: 0 auto;
+        flex-direction: column-reverse;
+    }
+
+    .registration-form-container{
+        width: calc(30% + 200px);
+        height: calc( 45vh + 185px);
+    }
+
+}
 /* ---------------------------------------------------- LoginPage.tsx ----------------------------------------------------*/
 .login-page-container{
     background-color: #F2F2F2;
@@ -213,7 +276,6 @@
 }
 
 .decorative-text{
-    width: fit-content; 
     padding-top: 5%;
     letter-spacing: 2px;
     font-weight: bold;
@@ -278,17 +340,15 @@
     width: 80% !important;
 }
 
-@media (max-width: 800px){
+@media 
+only screen and (max-width: 800px){
     .login-page-container{
         flex-direction: column;
-        justify-content: center;
     } 
 
     .login-form-container{
         width: 80vw;
-        max-width: inherit;
-        margin: 2rem 0;
-        margin-right: 10%;
+        margin: 0 auto;
     }
 
     .decorative-text{
@@ -296,6 +356,7 @@
     }
 } 
 
+/* ---------------------------------------------------- UserMainPage.tsx ----------------------------------------------------*/
 .shortener-container{
     color: white;
 }
@@ -310,12 +371,13 @@
     text-align: center;
 }
 
-/* ---------------------------------------------------- UserMainPage.tsx ----------------------------------------------------*/
-
+.shortener-container Form{
+    text-align: center;
+    margin: 0 auto;
+}
 .user-main-page-decoration{
     background-color: #05041A;
     text-align: center;
-    height: 250px;
 }
 
 .user-main-page-decoration h1{
@@ -327,13 +389,9 @@
 }
 
 .urlshorten-form-group input{
-    width: 675px;
+    display: inline-block;
+    width: 70%;
     height: 45px;
-}
-
-.shortener-container Form{
-    text-align: center;
-    margin: 0 auto;
 }
 
 .btn-shorten {
@@ -343,16 +401,54 @@
 }
 
 .url-container{
-    width: 50%;
-    margin:0 auto;
+
+    width: 75%;
+    margin: auto;
 }
 
 .table td{
     color: black;
     table-layout: fixed;
-    width: 10%;
 }
 
 .delete-img{
     cursor: pointer;
+}
+
+@media 
+only screen and (max-width: 850px){
+    .user-main-page-decoration{
+        height: 45vh;
+    }
+}
+@media
+only screen and (max-width: 600px){
+    .url-container{
+        margin-top: 10%;
+        text-align: center;
+    }
+    thead{
+        display: none;
+    }
+	table, tbody, th, td, tr { 
+		display: block; 
+    }
+    td:nth-child(1){
+        color: white;
+        background-color: purple;
+    }
+}
+
+@media
+only screen and (max-width: 480px){
+    .user-main-page-decoration{
+        height: 60vh;
+    }
+}
+
+@media
+only screen and (max-width: 335px){
+    .user-main-page-decoration{
+        height: 75vh;
+    }
 }
