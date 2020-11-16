@@ -154,7 +154,7 @@
 }
 
 @media
-only screen and (min-height: 1366px), screen and (max-width: 990px)  {
+only screen and (min-height: 1300px), screen and (max-width: 990px)  {
     .imgContainer{
         display: block;
         margin-bottom: 2%;
@@ -306,8 +306,6 @@ only screen and (max-width: 900px){
 .form-control:focus{border-color: white; color:white; background-color:#2E2E32; box-shadow: none; -webkit-box-shadow: none;} 
 
 .login-form-container{
-    outline: solid;
-    outline-color: red;
     height: 300px;
 }
 
