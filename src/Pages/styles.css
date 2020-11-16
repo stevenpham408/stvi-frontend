@@ -123,7 +123,7 @@
     color: #9B65CB;
     letter-spacing: 1.5px;
     text-align: center;
-    font-size: 20px;
+    font-size: 19px;
     margin-top: 5vh;
 }
 
@@ -153,9 +153,16 @@
     width: 280px; 
 }
 
+@media
+only screen and (min-height: 1366px), screen and (max-width: 990px)  {
+    .imgContainer{
+        display: block;
+        margin-bottom: 2%;
+    }
+}
 
 @media 
-only screen and (max-width: 1200px){
+only screen and (max-width: 990px){
     .getStarted{
         text-align: center;
     }
@@ -166,18 +173,6 @@ only screen and (max-width: 1200px){
     .imgContainer .caption{
         width: 200px;
     }
-}
-
-@media
-only screen and (min-height: 800px){
-    .imgContainer{
-        display: block;
-        margin-bottom: 2%;
-    }
-}
-@media 
-only screen and (max-width: 990px){
-
     .office_img{
         margin: 0 auto;
         width: 100%;
@@ -261,7 +256,7 @@ only screen and (max-width: 900px){
 
     .registration-form-container{
         width: calc(30% + 200px);
-        height: calc( 45vh + 185px);
+        height: 410px;
     }
 
 }
@@ -272,11 +267,11 @@ only screen and (max-width: 900px){
     justify-content: space-around;
     align-items: center;
     margin-top:10%;
-    margin-left: 0%;
 }
 
 .decorative-text{
-    padding-top: 5%;
+    width: calc(35vw + 50px);
+    margin-top: 10%;
     letter-spacing: 2px;
     font-weight: bold;
 }
@@ -307,16 +302,12 @@ only screen and (max-width: 900px){
     height: 20px;
 }
 
-.form-control{
-    background-color: #2E2E32;
-    color: white;
-    border-color: #BB86FC;
-    border-width: 1px;    
-}
 
 .form-control:focus{border-color: white; color:white; background-color:#2E2E32; box-shadow: none; -webkit-box-shadow: none;} 
 
 .login-form-container{
+    outline: solid;
+    outline-color: red;
     height: 300px;
 }
 
@@ -346,12 +337,20 @@ only screen and (max-width: 800px){
         flex-direction: column;
     } 
 
+    .login-text h1{
+        display: none;
+    }
     .login-form-container{
+        height: 100%;
+        padding-bottom: 25px;
         width: 80vw;
         margin: 0 auto;
     }
 
     .decorative-text{
+        width: 300px;
+        font-size: 10px;
+        margin-top: 0;
         text-align: center;
     }
 } 
