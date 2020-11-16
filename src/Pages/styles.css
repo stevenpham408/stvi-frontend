@@ -155,9 +155,15 @@
 
 @media
 only screen and (min-height: 1290px), screen and (max-width: 990px)  {
+    .what-else{
+        font-size: 18px;
+        margin-top: 2%;
+        margin-bottom: 2%;
+    }
+
     .imgContainer{
         display: block;
-        margin-bottom: 2%;
+        margin-bottom: 5%;
     }
 }
 
