@@ -17,7 +17,7 @@ const NavBar : React.FC = () => {
         </Nav.Item>
         <Nav.Item className="navbar-button-item">
             <Nav.Link href="/login" >
-                    <Button variant="outline-light" size="sm" ><strong>LOGINZ</strong></Button>
+                    <Button variant="outline-light" size="sm" ><strong>LOGIN</strong></Button>
             </Nav.Link>
         </Nav.Item>
   </Nav>
