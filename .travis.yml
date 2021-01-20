@@ -1,20 +1,20 @@
 language: node_js
 node_js:
-  - "stable"
+- stable
 services:
-  - docker 
+- docker
 cache:
   directories:
-    - node_modules
+  - node_modules
 script:
-  - npm test
-  - npm run build
+- npm test
+- npm run build
 deploy:
   provider: heroku
   api_key:
-    secure: FFs0kD9qMOKalydQ4aAineFbS/gMh9pFv4vOyOQ7OL89Cony+GBgqsdboMLHtwpYmxnxUzzcNk6eb/wQQPrJQUifr5Ek3p2LDwNizKDefDk/n0m+xiL5se4c/cZ7DWbUOyUyJJLQb8S6fR44PPgWSY3U+urL1JYX2rKsU89GcPlWHesuMaNqfMH2B+wGqH/DjokxSo4uLDVWocTAHtWb9jT90L/WzA48g1NRzpD5ZaJC9GCK55sqBDIYSyg4j/Rb3V7Lh3i3ptRMtG7/Ovq9i9CdN4jPebVYlzxWQjOtGC3vXIS7iCp+cXQzREduJx1ZQGn5SNJrM/NqCLNP8jEF5SIwSKgIQzU9nojl6Gmz5VYQeNVkzH14iKuUO/J6Jf2W4eb6ijWTalgEZl3pgafL7hXQK78PeqaacncanhevL4f+q3Glj5RX+yJvLk2AK5+gP9AWe8XGs52w+lSgkkhwMZWRXsRewB07sPN66lx+Cd7V1E6CrEAyLn2gfYL50SKigJT+l91wDPMe9ky2PASd5z1vriFiqaB6+2RvsAVY4TtMPw4F6NFLrcGtbiG4uW5g4IoDedtNOgPebI1AhSsKvi/H+hf6vtC5hgA5Vv3ORjG211Qs8sz22Zph5e5bZLCtIdl12cp8/nwnQrfa7vEhlM+K9xnA5AngQNeznUHLEQI=
+    secure: AGgcihIVuBE0jHvz8V7S1Ue97R2AzUn7XUON2jgj+bgyeVFLKPQDZo5RG/gLos53JMehuty8rMrjuDsDgmOOx0gg5v4F8wuQ2dOHFy4KqPM0c2mzdtjM7CFlmpWglVXsp430XsAzWMiubeN1Pd1s8Y49NVaNxmWpjzgvRZUsqXblKXvqXgPe7RUY2NfHKFypAnoEkq6i0yJtkUGxgXM7aUdFffbg/KPqQLbjtDLQB38k+bvhhBdoy9LjiDNcpjC5Ae7zQfzwCSKquLH6EOLFWc3JdGwn8w1ny7IXx3d3Oy/gbBN9EinWRh8c4+wsWEe4m8tenHJExedWHMVUSWIMmFBhMDRaJJPED+u2eZALe3YCJZMowORclQGHieMfJNGzkXKU+3tdM2n6VVEgzvM9WQZoSaLOvOJl/nf8Nf/+6u7xfYnYArLe2RjeZ1m/oa+6PqqnJxJ92SktKtPuHA/1tR5V5YJd2cS3GezHophVLNVl4W//fC3PkRsJwxc1qocRm0FDwgRe+GwrbAhnNBJgkwgf1fc64wvk01biCpgeuiszzLl9hCxQaEMcVor53CkR2gIyHWuU0BBvCLrmLEPU7DeOqlzVmpxFLh07vav3Sjm5itu7mxQJqPthr9gqvZSG0TPBeCrsJyy7oMPOqebGFotXklfcqRLY5vTjuEZST28=
   app: stvi
   on:
     repo: stevenpham408/stvi-frontend
-on:
+true:
   branch: master
