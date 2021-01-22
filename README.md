@@ -1,4 +1,4 @@
-[![Build Status](https://www.travis-ci.com/stevenpham408/stvi-frontend.svg?branch=master)
+![Build Status](https://www.travis-ci.com/stevenpham408/stvi-frontend.svg?branch=master)
 
 # stvi (front-end)
 
